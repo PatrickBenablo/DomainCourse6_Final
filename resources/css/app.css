@@ -1,0 +1,59 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+@source '../**/*.jsx';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Playfair Display', ui-serif, Georgia, serif;
+    --color-brand: #ffcf3f;
+    --color-brand-strong: #f4b400;
+    --color-brand-ink: #111111;
+    --color-panel: #f6f5ff;
+}
+
+@layer base {
+    body {
+        @apply bg-stone-50 text-stone-900;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        font-family: var(--font-display);
+    }
+}
+
+@layer components {
+    .container-shell {
+        @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+    }
+
+    .card-panel {
+        @apply rounded-3xl border border-stone-200/80 bg-white shadow-[0_24px_80px_-40px_rgba(17,17,17,0.35)];
+    }
+
+    .btn-primary {
+        @apply inline-flex items-center justify-center rounded-full bg-[var(--color-brand)] px-5 py-3 text-sm font-semibold text-stone-950 transition hover:-translate-y-0.5 hover:bg-[var(--color-brand-strong)];
+    }
+
+    .btn-dark {
+        @apply inline-flex items-center justify-center rounded-full bg-stone-950 px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5;
+    }
+
+    .btn-ghost {
+        @apply inline-flex items-center justify-center rounded-full border border-stone-300 px-5 py-3 text-sm font-semibold text-stone-700 transition hover:border-stone-500 hover:text-stone-950;
+    }
+
+    .field-input {
+        @apply w-full rounded-2xl border border-stone-200 bg-[#f4f3ff] px-4 py-3 text-sm text-stone-900 outline-none transition placeholder:text-stone-400 focus:border-blue-400 focus:bg-white;
+    }
+
+    .field-label {
+        @apply mb-2 block text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500;
+    }
+}
