@@ -1,4 +1,4 @@
-import { Head, Link, usePage } from '@inertiajs/react';
+import { Head, Link, usePage, router } from '@inertiajs/react';
 import FlashBanner from '../Components/FlashBanner';
 
 const navLinks = [
@@ -22,21 +22,33 @@ export default function AppShell({ title, children, darkHero = false }) {
                             <span>SchoolStore</span>
                         </Link>
                         <nav className="hidden items-center gap-6 text-sm text-stone-300 md:flex">
-                            {navLinks.map((item) => (
+{navLinks.map((item) => (
                                 <Link key={item.href} className="transition hover:text-white" href={item.href}>
                                     {item.label}
                                 </Link>
                             ))}
                             {!auth.user ? (
-                                <Link className="transition hover:text-white" href="/login">
+                                <Link
+                                    className="rounded-full bg-[var(--color-brand)] px-4 py-2 text-sm font-semibold text-stone-950 transition hover:brightness-105"
+                                    href="/login"
+                                >
                                     Login
                                 </Link>
-                            ) : null}
-                            {auth.user?.is_admin ? (
-                                <Link className="transition hover:text-white" href="/admin">
-                                    Admin
-                                </Link>
-                            ) : null}
+                            ) : (
+                                <>
+                                    <button
+                                        className="rounded-full bg-red-600 hover:bg-red-700 px-4 py-2 text-sm font-semibold text-white transition"
+                                        onClick={() => router.post('/logout')}
+                                    >
+                                        Logout
+                                    </button>
+                                    {auth.user?.is_admin ? (
+                                        <Link className="transition hover:text-white" href="/admin">
+                                            Admin
+                                        </Link>
+                                    ) : null}
+                                </>
+                            )}
                         </nav>
                         <div className="flex items-center gap-3">
                             <Link className="rounded-full bg-[var(--color-brand)] px-4 py-2 text-sm font-semibold text-stone-950" href="/cart">
